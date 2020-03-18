@@ -52,10 +52,18 @@ vim :
         对应底层操作：
         git hash-object -w 文件名 
         git update-index 
+    git commit : 可以打开编辑器，添加较长的提交信息
     git commit -m "提交信息" 将暂存区提交到版本库  
         git write-tree
         git commit-tree
     git diff : 查看当前哪些更新没有被暂存
     git diff --cached : 查看哪些暂存还没有被提交
-    
+    跳过暂存区：
+        git commit -a -m "提交信息"
+        git 会把所有已经跟踪过的文件暂存起来一并提交，从而跳过git add的步骤
+    移除文件：
+        rm 文件名   git 对每一次的修改并不会删除 
+    更改文件名称 ：
+        mv 源文件 新文件名
+
 
