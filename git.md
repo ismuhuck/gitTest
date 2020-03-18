@@ -91,7 +91,7 @@ vim :
     git log --oneline --decorate --graph --all:
         查看完整的分支图 ，起别名  git config --global alias.别名  'log --oneline --decorate --graph --all'
     git branch -v ：
-        查看没一个分支的最后一次提交
+        查看每一个分支的最后一次提交
     git branch 分支名 commitHash(提交对象的hash):
         新建一个分支并使该分支指向对应的提交对象，实现时间穿梭
     git checkout -b 分支名 ：
