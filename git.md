@@ -62,9 +62,17 @@ vim :
         git commit -a -m "提交信息"
         git 会把所有已经跟踪过的文件暂存起来一并提交，从而跳过git add的步骤
     移除文件：
-        rm 文件名   git 对每一次的修改并不会删除 
+        rm 文件名   然后git add 和git commit  git 对每一次的修改并不会删除
+        或者 git rm 文件名  后git commit
     更改文件名称 ：
         mv 源文件 新文件名
+        git mv 源文件名 新文件名 ：将工作目录中的文件进行重命名，再将修改添加到暂存区
+    查看历史记录：
+        git log 全部提交之后才能运行
+        git log --pretty=oneline  一次提交显示在一行
+        git log --oneline 简化显示一行
+
+
 
 ## Git 分支
     分支为指向最新提交对象的指针
