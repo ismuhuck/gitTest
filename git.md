@@ -66,4 +66,20 @@ vim :
     更改文件名称 ：
         mv 源文件 新文件名
 
+## Git 分支
+    分支为指向最新提交对象的指针
+    git branch 分支名 ：
+        创建一个新分支； 创建了一个可以移动的新的指针，这会在当前所在的提交对象上创建一个指针
+    git checkout 分支名：
+        切换分支
+    git branch :
+        显示分支列表
+    git branch -d 分支名： -D为强制删除
+        先切回主分支，再删除分支
+    git log --oneline --decorate --graph --all:
+        查看完整的分支图 ，起别名 
+    git branch -v ：
+        查看没一个分支的最后一次提交
+    git branch 分支名 commitHash:
+        新建一个分支并使该分支指向对应的提交对象
 
