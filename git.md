@@ -53,6 +53,7 @@ vim :
         git hash-object -w 文件名 
         git update-index 
     git commit : 可以打开编辑器，添加较长的提交信息
+        提交后暂存区并不会被清空 添加到暂存区后会覆盖暂存区中的同名文件
     git commit -m "提交信息" 将暂存区提交到版本库  
         git write-tree
         git commit-tree
@@ -71,7 +72,9 @@ vim :
         git log 全部提交之后才能运行
         git log --pretty=oneline  一次提交显示在一行
         git log --oneline 简化显示一行
-
+        git reflog 全部操作记录    q退出
+    git ls-files -s : 查看暂存区文件
+    git cat-file -p 暂存区hash值 ：查看暂存文件内容
 
 
 ## Git 分支
@@ -79,15 +82,76 @@ vim :
     git branch 分支名 ：
         创建一个新分支； 创建了一个可以移动的新的指针，这会在当前所在的提交对象上创建一个指针
     git checkout 分支名：
-        切换分支
+        切换分支  ， 切换分支HEAD、暂存区、工作目录会发生改变。
+        每次切换分支前，当前分支一定要为已提交状态， 第一次新建的文件未提交或未暂存会污染其它分支
     git branch :
         显示分支列表
     git branch -d 分支名： -D为强制删除
         先切回主分支，再删除分支
     git log --oneline --decorate --graph --all:
-        查看完整的分支图 ，起别名 
+        查看完整的分支图 ，起别名  git config --global alias.别名  'log --oneline --decorate --graph --all'
     git branch -v ：
         查看没一个分支的最后一次提交
-    git branch 分支名 commitHash:
-        新建一个分支并使该分支指向对应的提交对象
+    git branch 分支名 commitHash(提交对象的hash):
+        新建一个分支并使该分支指向对应的提交对象，实现时间穿梭
+    git checkout -b 分支名 ：
+        表示新建一个分支并切换到分支
+    git merge 要合并的分支名：
+        合并分支,快进合并不会产生版本冲突。但当一个删除的分支，在一个新分支之后，且新分支被主分支合并，这时主分支会
+        跑到新分支那里，主分支位于为删除的分支之前，如果那个未删除的分支修改了新分支修改的代码时，会产生版本冲突。
+
+## Git 存储
+    git stash :
+        该命令会将未完成的修改保存到一个栈上，而你可以在任何时候重新应用这些修改
+
+    git stash list :
+        查看存储
+    git stash apply
+        运用存储栈顶的元素
+        git stash drop stash@{0} 删除栈顶元素
+    git stash pop ：
+        运用栈顶元素并删除
+
+
+### Git 撤销操作
+    工作区
+        如何撤回工作目录中的修改
+            git checkout --文件名
+    暂存区：
+        如何撤回自己的暂存
+            git reset HEAD 文件名 ： 取消暂存
+    版本库：
+        如何撤回自己的提交
+            1. 提交注释书写错误
+                git commit --amend
+
+    git reset --soft HEAD~（或提交hash值） ：
+        本质是撤销上一次的git commit 命令 。
+            移动HEAD（带着分支）
+    git reset --mixed HEAD~  等同于 git reset HEAD~ :
+        依然会撤销上一次的提交，但还会取消暂存所有的东西。于是会回滚到所有git add 和git commit 之前
+        暂存区会变动
+    git reset --hard HEAD~ :
+        撤销了最后的提交、git add、git commit 命令以及工作目录中的所有工作
+        它会真正的销毁数据
+
+## 恢复
+    版本穿梭
+    git branch recover-branch hash(提交的hash)
+    也可以硬重置
+    git reset --hard hash
+
+## 打tag
+    git tag 列出标签
+    git tag -l 'v1.8.5*' 
+    git tag v1.1 commitHash(不指定就在最新的上面打tag)
+        git可以给历史中的，某次提交打上标签以示重要。比较有代表性的是人们会使用这个功能来标记发布节点
+    git show v1.0 ：
+        查看提交对象
+    git tag -d v1.0
+        删除标签
+    git checkout v1.0 ：
+        版本检出，会发生头部分离，即HEAD脱离了分支，如果想继续进行操作，需在此HEAD上建立新分支
+        git checkout -b '分支名'
+
 
