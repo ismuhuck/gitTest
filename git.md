@@ -190,6 +190,13 @@ vim :
         如果运行 git clone -o bing 那么你的远程仓库别名为bing
     git fetch 远程仓库名：
         更新本地仓库 这时数据拿到了远程跟踪分支身上 在master上合并远程跟踪分支
+    git push 远程仓库别名 --delete 分支名
+        删除远程分支
+    git remote prune 远程仓库别名 --dry-run
+        列出仍在远程跟踪但是远程已被删除的无用分支
+    git remote prune 远程仓库别名
+        清除上面命令列出的远程跟踪 
+
     
     
 
