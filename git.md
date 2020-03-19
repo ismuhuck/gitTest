@@ -166,8 +166,19 @@ vim :
 
 
 ## Git远程仓库
+
+    远程跟踪分支是远程分支状态的引用，它们是你不能移动的本地分支。当你做任何网络通讯操作时，它们会自动移动。
+    它们以 remote/branch 形式命名。
+    当克隆一个仓库时 它通常会自动的创建一个跟踪 origin/master 的master本地分支
+    在新建其他分支时可以指定想要跟踪的远程跟踪分支
+        git checkout -b 本地分支名 远程跟踪分支名
+        git checkout --track 远程跟踪分支名
+    将一个已经存在的分支 改成一个跟踪分支
+        git branch -u 远程跟踪分支名
+    查看有没有远程跟踪分支
+        git branch -vv
     配置仓库别名：
-        git remote add 别名 仓库地址
+        git remote add 远程仓库别名 仓库地址
     查看远程仓库使用的git别名与其对应的url
         git remote -v
     推送远程仓库：
