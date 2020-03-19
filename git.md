@@ -45,6 +45,15 @@ vim :
         :wq：保存退出
         setnm: 设置行号
 ## git 高层命令：
+    配置 个人邮箱和yonghuming
+        git config --global user.name 'muhuck'
+        git config --global user.email 156228894@qq.com
+            选项有： --system
+                    --global
+                    无选项  为当前项目配置用户
+    解除配置：
+        git config --global --unset user.name
+        git config --global --unset user.email
     git init ：初始化仓库
     创建工作目录，对工作目录进行修改
     git status : 检查文件状态 （已跟踪（已提交，已修改，已暂存），未跟踪）
@@ -137,7 +146,8 @@ vim :
 
 ## 恢复
     版本穿梭
-    git branch recover-branch hash(提交的hash)
+    git branch recover-branch(分支名)  hash(提交的hash)
+        在该分支中查看历史版本
     也可以硬重置
     git reset --hard hash
 
@@ -153,5 +163,23 @@ vim :
     git checkout v1.0 ：
         版本检出，会发生头部分离，即HEAD脱离了分支，如果想继续进行操作，需在此HEAD上建立新分支
         git checkout -b '分支名'
+
+
+## Git远程仓库
+    配置仓库别名：
+        git remote add 别名 仓库地址
+    查看远程仓库使用的git别名与其对应的url
+        git remote -v
+    推送远程仓库：
+        git push 仓库地址别名 分支名
+    克隆 ：
+        git clone 仓库地址
+        远程仓库的名字“origin” 与分支的名字“master”一样，在git中没有特别的名字。同时master是当你运行npm init 时默认
+        的起始分支名，原因仅仅是它的广泛使用，origin是当你运行git clone时默认的远程仓库的名字。
+        如果运行 git clone -o bing 那么你的远程仓库别名为bing
+    git fetch 远程仓库名：
+        更新本地仓库 这时数据拿到了远程跟踪分支身上 在master上合并远程跟踪分支
+    
+    
 
 
